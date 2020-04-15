@@ -21,7 +21,7 @@ heapless = "0.5.3"
 
 [dependencies.cortex-m]
 version         = "0.6.2"
-# features        = ["inline-asm"] # <- currently requires nightly compiler
+features        = ["inline-asm"] # <- currently requires nightly compiler
 
 [dependencies.cortex-m-rt]
 version         = "0.6.12"
