@@ -74,16 +74,65 @@ fn main() -> ! {
 //    What is the output of:
 //    > disassemble
 //
-//    ** your answer here **
+//    0x0800144c <+0>:	push	{r7, lr}
+//    0x0800144e <+2>:	mov	r7, sp
+//    0x08001450 <+4>:	sub	sp, #80	; 0x50
+//    0x08001452 <+6>:	str	r0, [sp, #24]
+//    0x08001454 <+8>:	bl	0x80021c2 <cortex_m::interrupt::disable>
+//    0x08001458 <+12>:	b.n	0x800145a <rust_begin_unwind+14>
+//    0x0800145a <+14>:	b.n	0x800145c <rust_begin_unwind+16>
+//    0x0800145c <+16>:	mov.w	r0, #3758096384	; 0xe0000000
+//    0x08001460 <+20>:	str	r0, [sp, #68]	; 0x44
+//    0x08001462 <+22>:	mov	r1, r0
+//    0x08001464 <+24>:	str	r0, [sp, #72]	; 0x48
+//    0x08001466 <+26>:	movw	r0, #10484	; 0x28f4
+// 0x08001470 <+36>:	add	r2, sp, #24
+// 0x08001472 <+38>:	str	r2, [sp, #60]	; 0x3c
+// 0x08001474 <+40>:	ldr	r2, [sp, #60]	; 0x3c
+// 0x08001476 <+42>:	str	r2, [sp, #76]	; 0x4c
+// 0x08001478 <+44>:	movw	r3, #5325	; 0x14cd
+// 0x0800147c <+48>:	movt	r3, #2048	; 0x800
+// 0x08001480 <+52>:	str	r0, [sp, #20]
+// 0x08001482 <+54>:	mov	r0, r2
+// 0x08001484 <+56>:	str	r1, [sp, #16]
+// 0x08001486 <+58>:	mov	r1, r3
+// 0x08001488 <+60>:	bl	0x80014ea <core::fmt::ArgumentV1::new>
+// 0x0800148c <+64>:	str	r0, [sp, #12]
+// 0x0800148e <+66>:	str	r1, [sp, #8]
+// 0x08001490 <+68>:	b.n	0x8001492 <rust_begin_unwind+70>
+ // 0x08001492 <+70>:	ldr	r0, [sp, #12]
+// 0x08001494 <+72>:	str	r0, [sp, #52]	; 0x34
+// 0x08001496 <+74>:	ldr	r1, [sp, #8]
+//    0x08001498 <+76>:	str	r1, [sp, #56]	; 0x38
+//    0x0800149a <+78>:	mov	r2, sp
+//    0x0800149c <+80>:	movs	r3, #1
+//    0x0800149e <+82>:	str	r3, [r2, #0]
+//    0x080014a0 <+84>:	add	r0, sp, #28
+//    0x080014a2 <+86>:	movs	r2, #2
+//    0x080014a4 <+88>:	add	r3, sp, #52	; 0x34
+//    0x080014a6 <+90>:	ldr	r1, [sp, #20]
+//    0x080014a8 <+92>:	bl	0x800153e <core::fmt::Arguments::new_v1>
+//    0x080014ac <+96>:	b.n	0x80014ae <rust_begin_unwind+98>
+//    0x080014ae <+98>:	add	r1, sp, #28
+//    0x080014b0 <+100>:	ldr	r0, [sp, #16]
+//    0x080014b2 <+102>:	bl	0x80016da <cortex_m::itm::write_fmt>
+//    0x080014b6 <+106>:	b.n	0x80014b8 <rust_begin_unwind+108>
+//    0x080014b8 <+108>:	b.n	0x80014ba <rust_begin_unwind+110>
+//    0x080014ba <+110>:	movs	r0, #4
+//    0x080014bc <+112>:	strb.w	r0, [r7, #-13]
+//    0x080014c0 <+116>:	ldrb.w	r0, [r7, #-13]
+//    0x080014c4 <+120>:	bl	0x8001578 <core::sync::atomic::compiler_fence>
+// => 0x080014c8 <+124>:	b.n	0x80014ca <rust_begin_unwind+126>
+//    0x080014ca <+126>:	b.n	0x80014ba <rust_begin_unwind+110>
 //
 //    How many instructions are in between the two `bkpt` instructions in the loop.
 //    Notice, the generated code may not be exactly what you expect :)
 //
-//    ** your answer here **
+//     18 insructions between the two breakpoints.
 //
 //    Which instruction stores the local variable on the stack.
 //
-//    ** your answer here **
+//      0x08001484 <+56>:	str	r1, [sp, #16]
 //
 //    Commit your answers (bare1_2)
 //
