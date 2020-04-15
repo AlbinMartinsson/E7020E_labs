@@ -58,11 +58,11 @@ fn main() -> ! {
 //    What happens when you continue (second iteration of the loop)?
 //    (passing 3 breakpoints)
 //
-//    ** your answer here **
+//    It panics because it tries to add 1 to a u32 max, causing an overflow.
 //
 //    What is the `ITM` output.
 //
-//    ** your answer here **
+//    panicked at 'attempt to add with overflow', examples/bare1.rs:23:9
 //
 //    Commit your answer (bare1_1)
 //
