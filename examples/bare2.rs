@@ -77,18 +77,25 @@ fn main() -> ! {
 //
 //    What is the output in the ITM console?
 //
-//    ** your answer here **
+//  bare2
+//  Start 966630836
+//  End 1527631008
+//  Diff 561000172
 //
 //    Rebuild and run in release mode
 //
 //    > cargo build --example bare2 --release
 //
-//    ** your answer here **
+// bare2
+// Start 3021642098
+// End 3025642106
+// Diff 4000008
+
 //
 //    Compute the ratio between debug/release optimized code
 //    (the speedup).
 //
-//    ** your answer here **
+//    It's a speed up of aprox 140 times.
 //
 //    commit your answers (bare2_1)
 //
