@@ -18,8 +18,8 @@ use cortex_m_semihosting::{hprint, hprintln};
 #[entry]
 fn main() -> ! {
     hprintln!("bare3").unwrap();
-    let s = "ABCD";
-    let bs = s.as_bytes();
+    let s:&str = "ABCD";
+    let bs:&[u8] = s.as_bytes();
 
     hprintln!("s = {}", s).unwrap();
     hprintln!("bs = {:?}", bs).unwrap();
@@ -54,7 +54,7 @@ fn main() -> ! {
 //
 // 1. What is the output in the `openocd` (Adapter Output) console?
 //
-'//    bare3
+//    bare3
 // s = ABCD
 // bs = [65, 66, 67, 68]
 // iterate over slice
