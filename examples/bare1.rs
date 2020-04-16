@@ -197,7 +197,7 @@ fn main() -> ! {
 //    Where is the local variable stored?
 //    What happened, and why is Rust + LLVM allowed to do that?
 //
-//    Release forces the compiler to run in the most efficent way possible, this removes all unnecesary instructions.
+//    Release forces the compiler to run in the most efficent way possible, this removes all unnecesary instructions.,
 //
 //    commit your answers (bare1_4)
 //
