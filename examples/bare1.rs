@@ -25,7 +25,7 @@ fn main() -> ! {
 
         // prevent optimization by read-volatile (unsafe)
         unsafe {
-            //core::ptr::read_volatile(&x);
+            core::ptr::read_volatile(&x);
         }
     }
 }
@@ -91,20 +91,23 @@ fn main() -> ! {
 //    0x0800042a <+32>:	mov	r2, r1
 //    0x0800042c <+34>:	cmp	r1, r0
 //    0x0800042e <+36>:	str	r2, [sp, #0]
-//    0x08000430 <+38>:	bcc.n	0x800043e <bare1::__cortex_m_rt_main+52>
+//    0x08000430 <+38>:	bcc.n	0x8000446 <bare1::__cortex_m_rt_main+60>
 //    0x08000432 <+40>:	b.n	0x8000434 <bare1::__cortex_m_rt_main+42>
 //    0x08000434 <+42>:	ldr	r0, [sp, #0]
 //    0x08000436 <+44>:	str	r0, [sp, #4]
 //    0x08000438 <+46>:	bkpt	0x0000
 //    0x0800043a <+48>:	b.n	0x800043c <bare1::__cortex_m_rt_main+50>
-//    0x0800043c <+50>:	b.n	0x8000422 <bare1::__cortex_m_rt_main+24>
-//    0x0800043e <+52>:	movw	r0, #9888	; 0x26a0
-//    0x08000442 <+56>:	movt	r0, #2048	; 0x800
-//    0x08000446 <+60>:	movw	r2, #9860	; 0x2684
-//    0x0800044a <+64>:	movt	r2, #2048	; 0x800
-//    0x0800044e <+68>:	movs	r1, #28
-//    0x08000450 <+70>:	bl	0x800055c <core::panicking::panic>
-//    0x08000454 <+74>:	udf	#254	; 0xfe
+//    0x0800043c <+50>:	add	r0, sp, #4
+//    0x0800043e <+52>:	bl	0x800045e <core::ptr::read_volatile>
+//    0x08000442 <+56>:	b.n	0x8000444 <bare1::__cortex_m_rt_main+58>
+//    0x08000444 <+58>:	b.n	0x8000422 <bare1::__cortex_m_rt_main+24>
+//    0x08000446 <+60>:	movw	r0, #9888	; 0x26a0
+//    0x0800044a <+64>:	movt	r0, #2048	; 0x800
+//    0x0800044e <+68>:	movw	r2, #9860	; 0x2684
+//    0x08000452 <+72>:	movt	r2, #2048	; 0x800
+//    0x08000456 <+76>:	movs	r1, #28
+//    0x08000458 <+78>:	bl	0x8000934 <core::panicking::panic>
+//    0x0800045c <+82>:	udf	#254	; 0xfe
 //
 //    How many instructions are in between the two `bkpt` instructions in the loop.
 //    Notice, the generated code may not be exactly what you expect :)
@@ -128,48 +131,22 @@ fn main() -> ! {
 //
 //    What is the output of:
 //    > disassemble
-//    0x0800040a <+0>:	push	{r7, lr}
-//    0x0800040c <+2>:	mov	r7, sp
-//    0x0800040e <+4>:	sub	sp, #16
-//    0x08000410 <+6>:	mvn.w	r0, #1
-//    0x08000414 <+10>:	str	r0, [sp, #8]
-//    0x08000416 <+12>:	movs	r0, #0
-//    0x08000418 <+14>:	strb.w	r0, [sp, #12]
-//    0x0800041c <+18>:	ldr	r0, [sp, #8]
-//    0x0800041e <+20>:	str	r0, [sp, #4]
-//    0x08000420 <+22>:	b.n	0x8000422 <bare1::__cortex_m_rt_main+24>
-// => 0x08000422 <+24>:	bkpt	0x0000
-// 0x08000428 <+30>:	adds	r1, r0, #1
-// 0x0800042a <+32>:	mov	r2, r1
-// 0x0800042c <+34>:	cmp	r1, r0
-// 0x0800042e <+36>:	str	r2, [sp, #0]
-// 0x08000430 <+38>:	bcc.n	0x8000446 <bare1::__cortex_m_rt_main+60>
-// 0x08000432 <+40>:	b.n	0x8000434 <bare1::__cortex_m_rt_main+42>
-// 0x08000434 <+42>:	ldr	r0, [sp, #0]
-// 0x08000436 <+44>:	str	r0, [sp, #4]
-// 0x08000438 <+46>:	bkpt	0x0000
-// 0x0800043a <+48>:	b.n	0x800043c <bare1::__cortex_m_rt_main+50>
-// 0x0800043c <+50>:	add	r0, sp, #4
-// 0x0800043e <+52>:	bl	0x800045e <core::ptr::read_volatile>
-// 0x08000442 <+56>:	b.n	0x8000444 <bare1::__cortex_m_rt_main+58>
-// 0x08000444 <+58>:	b.n	0x8000422 <bare1::__cortex_m_rt_main+24>
-// 0x08000446 <+60>:	movw	r0, #9888	; 0x26a0
-// 0x0800044a <+64>:	movt	r0, #2048	; 0x800
-// 0x0800044e <+68>:	movw	r2, #9860	; 0x2684
-// 0x08000452 <+72>:	movt	r2, #2048	; 0x800
-// 0x08000456 <+76>:	movs	r1, #28
-// 0x08000458 <+78>:	bl	0x8000934 <core::panicking::panic>
-// 0x0800045c <+82>:	udf	#254	; 0xfe
-//
-//  
-//
+//       0x0800040a <+0>:	sub	sp, #4
+//    0x0800040c <+2>:	mvn.w	r0, #1
+//    0x08000410 <+6>:	str	r0, [sp, #0]
+//    0x08000412 <+8>:	adds	r0, #1
+//    0x08000414 <+10>:	bkpt	0x0000
+//    0x08000416 <+12>:	str	r0, [sp, #0]
+// => 0x08000418 <+14>:	bkpt	0x0000
+//    0x0800041a <+16>:	ldr	r0, [sp, #0]
+//    0x0800041c <+18>:	b.n	0x8000412 <bare1::__cortex_m_rt_main+8>
 //    How many instructions are in between the two `bkpt` instructions.
 //
-//    9
+//    1
 //
 //    Where is the local variable stored?
 //
-//    0x08000436 <+44>:	str	r0, [sp, #4]
+//    0x08000416 <+12>:	str	r0, [sp, #0]
 //
 //    Is there now any reference to the panic handler?
 //    If not, why is that the case?
