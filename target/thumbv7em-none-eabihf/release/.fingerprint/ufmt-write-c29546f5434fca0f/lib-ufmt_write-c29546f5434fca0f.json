@@ -1,0 +1,1 @@
+{"rustc":17472926528193012397,"features":"[]","target":4587588254178370946,"profile":14262939749342047399,"path":14923700922492285793,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"thumbv7em-none-eabihf/release/.fingerprint/ufmt-write-c29546f5434fca0f/dep-lib-ufmt_write-c29546f5434fca0f"}}],"rustflags":["-C","link-arg=-Tlink.x"],"metadata":13615654830103787074}

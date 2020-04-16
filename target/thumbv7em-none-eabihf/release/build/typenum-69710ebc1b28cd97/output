@@ -1,0 +1,2 @@
+cargo:rustc-env=TYPENUM_BUILD_OP=/home/albin/E7020E_labs/target/thumbv7em-none-eabihf/release/build/typenum-69710ebc1b28cd97/out/consts.rs
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=/home/albin/E7020E_labs/target/thumbv7em-none-eabihf/release/build/typenum-69710ebc1b28cd97/out/op.rs

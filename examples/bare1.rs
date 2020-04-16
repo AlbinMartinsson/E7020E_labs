@@ -25,7 +25,7 @@ fn main() -> ! {
 
         // prevent optimization by read-volatile (unsafe)
         unsafe {
-            core::ptr::read_volatile(&x);
+           // core::ptr::read_volatile(&x);
         }
     }
 }
@@ -186,16 +186,18 @@ fn main() -> ! {
 //    What is the output of:
 //    > disassemble
 //
-//    ** your answer here **
+//      0x0800040a <+0>:	bkpt	0x0000
+//   => 0x0800040c <+2>:	bkpt	0x0000
+//      0x0800040e <+4>:	b.n	0x800040a <bare1::__cortex_m_rt_main>
 //
 //    How many instructions are in between the two `bkpt` instructions.
 //
-//    ** your answer here **
+//    0
 //
 //    Where is the local variable stored?
 //    What happened, and why is Rust + LLVM allowed to do that?
 //
-//    ** your answer here **
+//    Release forces the compiler to run in the most efficent way possible, this removes all unnecesary instructions.
 //
 //    commit your answers (bare1_4)
 //

@@ -1,0 +1,1 @@
+{"rustc":17472926528193012397,"features":"[\"inline-asm\"]","target":10429514197457385088,"profile":14262939749342047399,"path":7629403095540786614,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"release/.fingerprint/cortex-m-591bcc5bb9f478da/dep-build-script-build_script_build-591bcc5bb9f478da"}}],"rustflags":[],"metadata":14797805133092906724}

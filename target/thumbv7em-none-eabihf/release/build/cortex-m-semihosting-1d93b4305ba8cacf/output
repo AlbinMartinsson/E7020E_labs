@@ -1,0 +1,3 @@
+cargo:rustc-link-lib=static=cortex-m-semihosting
+cargo:rustc-link-search=/home/albin/E7020E_labs/target/thumbv7em-none-eabihf/release/build/cortex-m-semihosting-1d93b4305ba8cacf/out
+cargo:rustc-cfg=thumb
