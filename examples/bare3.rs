@@ -54,7 +54,7 @@ fn main() -> ! {
 //
 // 1. What is the output in the `openocd` (Adapter Output) console?
 //
-//    bare3
+'//    bare3
 // s = ABCD
 // bs = [65, 66, 67, 68]
 // iterate over slice

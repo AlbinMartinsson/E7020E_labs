@@ -36,7 +36,7 @@
             "request": "launch",
             "servertype": "openocd",
             "name": "itm internal (debug)",
-            "preLaunchTask": "cargo build --example --release",
+            "preLaunchTask": "cargo build --example",
             "executable": "./target/thumbv7em-none-eabihf/debug/examples/${fileBasenameNoExtension}",
             "configFiles": [
                 //"interface/stlink.cfg",
@@ -72,7 +72,7 @@
             "request": "launch",
             "servertype": "openocd",
             "name": "itm fifo (debug)",
-            "preLaunchTask": "cargo build --example --relase",
+            "preLaunchTask": "cargo build --example",
             "executable": "./target/thumbv7em-none-eabihf/debug/examples/${fileBasenameNoExtension}",
             "configFiles": [
                 //"interface/stlink.cfg",
