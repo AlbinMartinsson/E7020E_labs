@@ -84,7 +84,7 @@ fn main() -> ! {
 //
 // 1.  Did you enjoy the blinking?
 //
-//    ** your answer here **
+//    Yes, it was very pretty! 
 //
 //    Now lookup the data-sheets, and read each section referred,
 //    6.3.11, 8.4.1, 8.4.7
