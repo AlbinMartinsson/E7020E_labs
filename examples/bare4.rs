@@ -125,16 +125,24 @@ fn main() -> ! {
 //
 //    Why is it important that ordering of volatile operations are ensured by the compiler?
 //
-//    ** your answer here **
+//    Without the ordering of volatile operations the program would lose it's deterministic nature. For instance 
+//    it could try to read or write to unallocated memory adresses causing the program to behave non-deterministic.
 //
 //    Give an example in the above code, where reordering might make things go horribly wrong
 //    (hint, accessing a peripheral not being powered...)
 //
-//    ** your answer here **
+//    let r = read_u32(RCC_AHB1ENR); // read
+//    write_u32(RCC_AHB1ENR, r | 1); // set enable
+// configure PA5 as output
+//   let r = read_u32(GPIOA_MODER) & !(0b11 << (5 * 2)); // read and mask
+//   write_u32(GPIOA_MODER, r | 0b01 << (5 * 2)); // set output mode
+// If we where to order this code the other way around i.e. trying to set the output mode of PA5 without first 
+// powering the GPIOA pins we would be in a lot of trouble.
 //
 //    Without the non-reordering property of `write_volatile/read_volatile` could that happen in theory
 //    (argue from the point of data dependencies).
 //
-//    ** your answer here **
+//    In theory it should be possible since there's no guarantee that the compiler takes the order in to account and may 
+//    think that it's more "efficient" to have the instructions in a diferent order then the one you wrote.
 //
 //    Commit your answers (bare4_3)
