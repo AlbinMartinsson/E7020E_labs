@@ -37,7 +37,7 @@ fn main() -> ! {
     hprintln!("").unwrap();
 
     let a = [65u8; 4];
-    // let mut a = [0u8; 4];
+    let mut a = [0u8; 4];
 
     hprintln!("").unwrap();
     hprintln!("a = {}", core::str::from_utf8(&a).unwrap()).unwrap();
@@ -95,7 +95,9 @@ fn main() -> ! {
 //`
 //    Run the program, what happens and why?
 //
-//    ** your answer here **
+//    The program runs the same for all parts except the last print of a, in the first version of the code we set a = 65 and the
+//    of 4 which results in AAAA because 65 is the asci code for A.
+//    When we set a = 0 the print of a is empty since 0 is the asci code for null.
 //
 //    Commit your answers (bare3_3)
 //
