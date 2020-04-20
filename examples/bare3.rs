@@ -39,6 +39,15 @@ fn main() -> ! {
     let a = [65u8; 4];
     let mut a = [0u8; 4];
 
+
+    //Copy bs into a using raw indexing.
+    for i in 0..bs.len() {
+        a[i] = bs[i];
+    }
+    //A print to make sure a = bs byte by byte.
+    hprintln!("").unwrap();
+    hprintln!("a = {:?},", a).unwrap();
+
     hprintln!("").unwrap();
     hprintln!("a = {}", core::str::from_utf8(&a).unwrap()).unwrap();
 
