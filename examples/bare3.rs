@@ -41,15 +41,22 @@ fn main() -> ! {
 
 
     //Copy bs into a using raw indexing.
-    for i in 0..bs.len() {
-        a[i] = bs[i];
-    }
-    //A print to make sure a = bs byte by byte.
-    hprintln!("").unwrap();
-    hprintln!("a = {:?},", a).unwrap();
+    // for i in 0..bs.len() {
+    //     a[i] = bs[i];
+    // }
+    // //A print to make sure a = bs byte by byte.
+    // hprintln!("").unwrap();
+    // hprintln!("a = {:?},", a).unwrap();
 
-    hprintln!("").unwrap();
-    hprintln!("a = {}", core::str::from_utf8(&a).unwrap()).unwrap();
+    //Copy using slice
+    let a: &[u8] = &bs[..];
+
+    //A print to make sure a = bs byte by byte.
+     hprintln!("").unwrap();
+     hprintln!("a = {:?},", a).unwrap();
+
+     hprintln!("").unwrap();
+     hprintln!("a = {}", core::str::from_utf8(&a).unwrap()).unwrap();
 
     loop {
         continue;
