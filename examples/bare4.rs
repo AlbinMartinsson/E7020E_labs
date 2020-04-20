@@ -36,8 +36,8 @@ use address::*;
 
 #[inline(always)]
 fn read_u32(addr: u32) -> u32 {
-    unsafe { core::ptr::read_volatile(addr as *const _) }
-    //core::ptr::read_volatile(addr as *const _)
+    //unsafe { core::ptr::read_volatile(addr as *const _) }
+    core::ptr::read_volatile(addr as *const _)
 }
 
 #[inline(always)]
@@ -101,12 +101,18 @@ fn main() -> ! {
 //
 //    What was the error message and explain why.
 //
-//    ** your answer here **
+//    error[E0133]: call to unsafe function is unsafe and requires unsafe function or block
+//   --> examples/bare4.rs:40:5
+//   |
+// 40 |     core::ptr::read_volatile(addr as *const _)
+//   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ call to unsafe function
+//   |
+//   = note: consult the function's documentation for information on how to avoid undefined behavior
 //
 //    Digging a bit deeper, why do you think `read_volatile` is declared `unsafe`.
 //    (https://doc.rust-lang.org/core/ptr/fn.read_volatile.html, for some food for thought )
 //
-//    ** your answer here **
+//    Volatile operations can read unallocated adresses, which should be consired an unsafe operation by all standards.
 //
 //    Commit your answers (bare4_2)
 //
