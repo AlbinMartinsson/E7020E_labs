@@ -57,12 +57,13 @@ mod stm32f40x {
     // width  (field width)
     // value  (new value that the field should take)
     //
-    // impl VolatileCell<u32> {
-    //     #[inline(always)]
-    //     pub fn modify(&self, offset: u8, width: u8, value: u32) {
-    //         // your code here
-    //     }
-    // }
+     impl VolatileCell<u32> {
+         #[inline(always)]
+         pub fn modify(&self, offset: u8, width: u8, value: u32) {
+            let mut mask: u32 = (0b1 << width) - 1;
+            self.write(!(mask << offset) & self.read() | (value & mask) << offset);
+         }
+     }
 
     #[repr(C)]
     #[allow(non_snake_case)]
@@ -141,27 +142,27 @@ fn wait(i: u32) {
 }
 
 // simple test of Your `modify`
-//fn test() {
-// let t:VolatileCell<u32> = unsafe {  core::mem::uninitialized() };
-// t.write(0);
-// assert!(t.read() == 0);
-// t.modify(3, 3, 0b10101);
+fn test() {
+ let t:VolatileCell<u32> = unsafe {  core::mem::uninitialized() };
+ t.write(0);
+ assert!(t.read() == 0);
+ t.modify(3, 3, 0b10101);
 // //
 // //     10101
 // //    ..0111000
 // //    ---------
 // //    000101000
-// assert!(t.read() == 0b101 << 3);
-// t.modify(4, 3, 0b10001);
+ assert!(t.read() == 0b101 << 3);
+t.modify(4, 3, 0b10001);
 // //    000101000
 // //      111
 // //      001
 // //    000011000
-// assert!(t.read() == 0b011 << 3);
+ assert!(t.read() == 0b011 << 3);
 
 // if << is used, your code will panic in dev (debug), but not in release mode
-// t.modify(32, 3, 1);
-//}
+ t.modify(32, 3, 1);
+}
 
 // system startup, can be hidden from the user
 #[entry]
@@ -169,7 +170,7 @@ fn main() -> ! {
     let rcc = unsafe { &mut *RCC::get() }; // get the reference to RCC in memory
     let gpioa = unsafe { &mut *GPIOA::get() }; // get the reference to GPIOA in memory
 
-    // test(); // uncomment to run test
+    test(); // uncomment to run test
     idle(rcc, gpioa);
     loop {
         continue;
@@ -243,6 +244,8 @@ fn idle(rcc: &mut RCC, gpioa: &mut GPIOA) {
 //    Run and see that the program behaves the same.
 //
 //    Commit your answers (bare5_2)
+//
+// The new function modify passes all the tests i.e. it's working! :D
 //
 //    Discussion:
 //    As with arithmetic operations, default semantics differ in between
